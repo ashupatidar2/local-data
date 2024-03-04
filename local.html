@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Local Storage Example</title>
+    <link rel="stylesheet" href="memandisplay.css">
+  </head>
+  <body>
+
+
+
+    <header>
+      <nav>
+        <a href="local.html">
+          <button >Save Data</button>
+        </a>
+
+        <a href="display.html">
+          <button>Show Saved Data</button>
+        </a>
+      </nav>
+    </header>
+
+    <div>
+      <h2>Save Data</h2>
+      <form id="dataForm">
+        <label for="imageName">Name:</label>
+        <input type="text" id="Name" name="Name" /><br /><br />
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" /><br /><br />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" /><br /><br />
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="url" id="imageUrl" name="imageUrl" /><br /><br />
+
+        <button type="button" onclick="saveData()">Save</button>
+      </form>
+    </div>
+
+    <script>
+      
+      function saveData() {
+       
+        const Name = document.getElementById("Name").value;
+        const age = document.getElementById("age").value;
+        const email = document.getElementById("email").value;
+        const imageUrl = document.getElementById("imageUrl").value;
+
+        const data = {
+          Name: Name,
+          age: age,
+          email: email,
+          Url: imageUrl,
+        };
+       
+        const saveData = JSON.parse(localStorage.getItem('savedData'))|| [];
+        saveData.push(data);
+        localStorage.setItem("savedData", JSON.stringify(saveData));
+        
+
+        alert("Data is saved!");
+
+        // localStorage.clear()
+      }
+
+     //JSON.parse(localStorage.getItem('savedData'))||
+
+    </script>
+  </body>
+</html>

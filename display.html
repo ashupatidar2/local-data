@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Display Saved Data</title>
+    <link rel="stylesheet" href="memandisplay.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="local.html">
+          <button>Save Data</button>
+        </a>
+        <a href="display.html">
+          <button onclick="displaySavedData()">Show Saved Data</button>
+        </a>
+      </nav>
+    </header>
+    <div>
+      <h2>Saved Data</h2>
+      <div id="container"></div>
+    </div>
+
+    <script>
+      function displaySavedData() {
+        const savedData = JSON.parse(localStorage.getItem("savedData"));
+       
+        const Container = document.getElementById("container");
+
+        if (savedData.length > 0) {
+          savedData.forEach(function(data) {
+            const dataDiv = document.createElement("div");
+            const Name = document.createElement("p");
+            const Age = document.createElement("p");
+            const Email = document.createElement("p");
+            const Image = document.createElement("img");
+            const Hr = document.createElement("hr");
+
+            Name.textContent = "Name: " + data.Name;
+            Age.textContent = "Age: " + data.age;
+            Email.textContent = "Email: " + data.email;
+            Image.src = data.Url;
+            Image.style.maxWidth = "200px";
+
+            dataDiv.append(Name, Age, Email, Image, Hr);
+
+            Container.appendChild(dataDiv);
+          });
+        } else {
+          Container.innerHTML = "<p>No saved data found.</p>";
+        }
+      }
+
+      displaySavedData();
+    </script>
+  </body>
+</html>
